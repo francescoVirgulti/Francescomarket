@@ -1,8 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Titolo:</strong>
+<div class="row">
+	<div class="col l6">
+		<%= image_tag @content.cover.url(:medium) %>
+	</div>
+	<div class="col l6">
+		<h1>
   <%= @content.titolo %>
+</h1>
+
+<p>
+  <strong>venduto da:</strong>
+  <%= @content.user.email %>
 </p>
 
 <p>
@@ -10,10 +19,17 @@
   <%= @content.descrizione %>
 </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @content.price %>
-</p>
+<h4>
+  <strong>Prezzo:</strong>
+  <%= number_to_currency(@content.price) %>
+</h4>
+	</div>
+</div>
 
+
+
+
+<% if @content.user == current_user %>
 <%= link_to 'Edit', edit_content_path(@content) %> |
 <%= link_to 'Back', contents_path %>
+<% end %>
